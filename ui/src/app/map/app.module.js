@@ -1,5 +1,4 @@
-import flightMap from './map/map.module'
-import apiUrl from './api.url'
+import 'angular-material/angular-material.css'
 import './home.css'
 import home from './home.html'
 import GlobalController from './GlobalController.js'
@@ -7,17 +6,13 @@ import HomeController from './HomeController.js'
 import UserController from './UserController.js'
 import ProfileController from './ProfileController.js'
 import HomeService from './HomeService.js'
+import uirouter from 'angular-ui-router'
+import material from 'angular-material'
 import bcrypt from 'bcryptjs'
+
 export default
-  angular
-    .module('flight', [
-      'ngAria',
-      'ngAnimate',
-      'ngMaterial',
-      'ngMessages',
-      'ui.router',
-       flightMap
-    ]).config(function($stateProvider, $urlRouterProvider){
+angular.module('App', [uirouter, material])
+  .config(function($stateProvider, $urlRouterProvider){
     $urlRouterProvider.otherwise("/")
     $stateProvider
       .state('rettiwt',{
@@ -49,5 +44,4 @@ export default
         data:{}
       })
   })
-    .constant('apiUrl', apiUrl)
-    .service('HomeService', HomeService).name
+  .service('HomeService', HomeService).name

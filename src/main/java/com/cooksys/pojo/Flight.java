@@ -1,6 +1,6 @@
 package com.cooksys.pojo;
 
-public class Flight {
+public class Flight implements Comparable {
 	
 	//Name of city where flight originates
 	private String origin;
@@ -45,6 +45,13 @@ public class Flight {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
+	@Override
+	public int compareTo(Object comp) {
+		int compareOffset=(int) ((Flight)comp).getOffset();
+		
+		return  ((int) this.getOffset())-compareOffset;
+	}
+
 	
 	
 
