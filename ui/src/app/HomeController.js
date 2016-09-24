@@ -24,7 +24,7 @@ class HomeController{
       this.hash = bcrypt.hashSync($scope.user.password,salt );
       HomeService.sendLogin($scope.user.username,this.hash).then((result)=>{
 
-        (result.data.id!==0&&bcrypt.compareSync($scope.user.password, result.data.message))?
+        (result.data.id!==0&&bcrypt.compareSync($scope.user.password, result.data.password))?
         (HomeService.saveId(result.data.id,$scope.user.username),
         $window.location.href='#/User/'+result.data.id):
         this.error("Invalid login")
@@ -43,9 +43,9 @@ class HomeController{
       var salt = bcrypt.genSaltSync(10);
       this.hash = bcrypt.hashSync($scope.user.password, salt);
       HomeService.newUser($scope.user.username,this.hash).then((result)=>{
-        (result.data.id!==0&&bcrypt.compareSync($scope.user.password, result.data.message))?
-        (HomeService.saveId(result.data.id,$scope.user.username),
-        $window.location.href='#/User/'+result.data.id):
+        result.data!==0?
+        (HomeService.saveId(result.data,$scope.user.username),
+        $window.location.href='#/User/'+result.data):
         this.error("Cannot use this Username")
     })
 	}

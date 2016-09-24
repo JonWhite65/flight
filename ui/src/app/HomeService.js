@@ -5,10 +5,13 @@ class HomeService{
 		this.id=""
 		this.username
 		this.sendLogin=function(username,password){
-			let user={"username":username,
-			"password":password}
-			return $http.put('http://localhost:8080/user/',user)}
 
+			return $http.get('http://localhost:8000/user/'+username+'/'+password)}
+
+			this.newUser=function(username,password){
+				let user={"username":username,
+				"password":password}
+				return $http.post('http://localhost:8000/user/',user)}
 
 		this.saveId=function(id,username){
 			console.dir(id)
@@ -17,10 +20,7 @@ class HomeService{
 			this.username=username
 			console.dir(this.id)
 		}
-		this.newUser=function(username,password){
-			let user={"username":username,
-			"password":password}
-			return $http.post('http://localhost:8080/user/',user)}
+
 
 
 		this.getFeeds=function(){
