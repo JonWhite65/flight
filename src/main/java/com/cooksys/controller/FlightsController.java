@@ -14,9 +14,9 @@ import com.cooksys.pojo.Flight;
 import com.cooksys.service.FlightService;
 import com.cooksys.service.LocationService;
 
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE})
 @RestController
 @RequestMapping("flights")
-@CrossOrigin
 public class FlightsController {
 	
 	@Autowired

@@ -3,13 +3,14 @@
   <md-toolbar>
 
     <div class="md-toolbar-tools">
-      <span>Rettiwt</span>
+      <span>Guest Flight Registration System</span>
 
       <!-- fill up the space between left and right area -->
       <span flex></span>
-      <md-button ng-if="GuestHide" ng-click="hC.guest()">
-        {{ButtonGuest}}
-      </md-button>
+
+
+
+
       <md-menu  md-position-mode="target-right target" md-offset="0, 72">
       <md-button md-menu-origin ng-click="hC.toggleLogin($mdOpenMenu, $event)">
         {{ButtonLogin}}
@@ -17,18 +18,18 @@
       <md-menu-content layout="column">
 
         <md-menu-item>
-            <p  md-menu-align-target> {{MenuMessage}} </p>
+            <p  md-menu-align-target> {{LoginMessage}} </p>
         </md-menu-item>
         <div layout="row">
          <md-menu-item>
-           <md-input-container ng-if="LoginFields">
+           <md-input-container>
              <label>Username</label>
              <input type="text" ng-model="user.username" required md-maxlength="10">
 
            </md-input-container>
          </md-menu-item>
          <md-menu-item>
-             <md-input-container ng-if="LoginFields">
+             <md-input-container>
             <label>Password</label>
               <input type="text" ng-model="user.password" required md-maxlength="10">
 
@@ -39,14 +40,9 @@
               Login
             </md-button>
           </md-menu-item>
-          <md-menu-item>
-            <md-button md-prevent-menu-close ng-click="hC.newUser()">
-              New User
-            </md-button>
-          </md-menu-item>
         </div>
         <md-menu-item>
-        <p ng-if="showError" >{{errorMessage}}</p>
+        <p ng-if="showError" >{{ErrorMessage}}</p>
       </md-menu-item>
       </md-menu-content>
     </md-menu>
@@ -54,47 +50,38 @@
   </md-toolbar>
   </div>
 
-<div layout="row" layout-fill style="min-height: 224px;" ng-if="Feed" >
-<div flex="20" >
-  <div ng-if="Feed1">
-    {{username}} Follows
-  <md-virtual-repeat-container md-auto-shrink="true">
-    <div md-virtual-repeat="i in myarray1" md-on-demand ="true" md-item-size="100">
-      <md-button ng-click="hC.reroute('#/UserProfile/'+i.id)">{{i.message}}</md-button>
 
-    </div>
-  </md-virtual-repeat-container>
+
+<div layout="row" layout-fill style="min-height: 224px" >
+<div flex="25" >
+<div ng-if="state.notLoggedIn"></div>
+<h1>New User?</h1>
+<br>
+<md-input-container>
+  <label>Username</label>
+  <input type="text" ng-model="user1.username" required md-maxlength="10">
+
+</md-input-container>
+<md-input-container>
+<label>Password</label>
+ <input type="text" ng-model="user1.password" required md-maxlength="10">
+
+</md-input-container>
+<md-button  ng-click="hC.newUser()">
+  Create Account
+</md-button>
 </div>
-</div>
-<div flex="60" >
-  <div ng-if="Post">
-    <md-button ng-click="hC.addTweet()">Post</md-button>
+<div flex="25" >
+  <search-bar ng-if="!state.notLoggedIn"></search-bar>
 
-    <md-input-container >
-      <label>share your thoughts with a very limited group of people!</label>
-      <input type="text" ng-model="newTweet.tweet" required md-maxlength="140">
-
-    </md-input-container>
-  </div>
-  <md-virtual-repeat-container md-auto-shrink="true">
-    <div md-virtual-repeat="i in myarray" md-on-demand ="true" md-item-size="1000">
-      <md-button ng-click="hC.reroute('#/UserProfile/'+i.userId)">{{i.username}}</md-button>
-        {{i.time.dayOfWeek}}    {{i.time.hour}}:{{i.time.minute}}
-        <br>
-        {{i.content}}</div>
-  </md-virtual-repeat-container>
+  <current-flight-list ng-if="state.noSearchInput"></current-flight-list>
+  <searched-flight-list  ng-if="!state.noSearchInput"></searched-flight-list>
   </div>
 
 
-<div flex="20">
-  <div ng-if="Feed1">
-    {{username}} Is Followed By
-  <md-virtual-repeat-container md-auto-shrink="true">
-    <div md-virtual-repeat="i in myarray2" md-on-demand ="true" md-item-size="100">{{i}}</div>
-  </md-virtual-repeat-container>
-</div>
-</div>
-</div>
-
-</div>
+<div flex="50">
 <flight-map ></flight-map>
+</div>
+</div>
+
+</div>

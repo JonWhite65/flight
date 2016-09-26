@@ -1,0 +1,5 @@
+<div ng-repeat="flight in fLC.flights">
+Flight #{{$index+1}} Leaves from{{flight.origin}} " for" {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 12 ? "am" : "pm"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}}
+
+
+</div>

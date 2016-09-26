@@ -15,9 +15,9 @@ import com.cooksys.entity.User;
 import com.cooksys.service.LocationService;
 import com.cooksys.service.UserService;
 
+@CrossOrigin(methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE})
 @RestController
 @RequestMapping("user")
-@CrossOrigin
 public class UserController {
 
 	@Autowired
