@@ -2,67 +2,83 @@ import templateUrl from './home.html'
 
 class HomeController{
 	/* @ngInject */
-  constructor (HomeService,$window,$scope){
+  constructor (HomeService,$interval){
     var bcrypt = require('bcryptjs')
     this.hash
-    $scope.ButtonLogin="Login"
-    $scope.LoginMessage="Hello Please Sign In"
-    $scope.LoginFields=true
-    $scope.user={"username":"","password":""}
-    $scope.user1={"username":"","password":""}
-  $scope.showError=false
-  $scope.errorMessage=""
-  $scope.state={"notLoggedIn":true}
-  $scope.state={"noSearchInput":true}
+    this.ButtonLogin="Login"
+    this.LoginMessage="Hello Please Sign In"
+    this.LoginFields=true
+    this.user={"username":"","password":""}
+    this.user1={"username":"","password":""}
+  this.notLoggedIn=true
+  this.noSearchInput=true
+  var ctrl=this
 
-    this.error=function(message){
-      this.errorMessage=message
-      this.showError=true
 
-    }
+
+
+
    let originatorEv
 		this.login= function($mdMenu){
       var salt = bcrypt.genSaltSync(10);
-      this.hash = bcrypt.hashSync($scope.user.password,salt );
-      HomeService.sendLogin($scope.user.username,this.hash).then((result)=>{
+      this.hash = bcrypt.hashSync(this.user.password,salt );
+      HomeService.sendLogin(this.user.username,this.hash).then((result)=>{
 
-        (result.data.id!==0&&bcrypt.compareSync($scope.user.password, result.data.password))?
-        (HomeService.saveId(result.data.id,$scope.user.username),
-        $scope.state.notLoggedIn=false,
-      $scope.ButtonLogin="Log Out-"+$scope.user.username
+        (result.data.id!==0&&bcrypt.compareSync(this.user.password, result.data.password))?
+        (HomeService.saveId(result.data.id,this.user.username),
+        this.user.username="",
+        this.user.password="",
+        this.notLoggedIn=false,
+      this.ButtonLogin="Log Out-"+HomeService.username
     //ask why undefined  $mdMenu.hide=true
   ):
-        this.error("Invalid login")
+        (this.errorMessage="Invalid login",
+        this.showError=true)
      })
 
       }
       this.newUser= function(){
+
         var salt = bcrypt.genSaltSync(10);
-        this.hash = bcrypt.hashSync($scope.user1.password, salt);
-        HomeService.newUser($scope.user1.username,this.hash).then((result)=>{
+        this.hash = bcrypt.hashSync(this.user1.password, salt);
+        HomeService.newUser(this.user1.username,this.hash).then((result)=>{
           result.data!==0?
-          (HomeService.saveId(result.data,$scope.user1.username),
-          console.dir(result.data),
-          $scope.state.notLoggedIn=false,
-        $scope.ButtonLogin="Log Out-"+$scope.user.username)
+          (HomeService.saveId(result.data,this.user1.username),
+        this.user1.username="",
+        this.user1.password="",
+          this.notLoggedIn=false,
+        this.ButtonLogin="Log Out-"+HomeService.username)
           :
-          this.error("Cannot use this Username")
+          (this.errorMessage="Cannot use this Username",
+          this.showError=true)
       })
     }
-      this.logOut=function(){
-
-      }
     this.toggleLogin=function($mdOpenMenu,ev){
-      if($scope.ButtonLogin==="Login"){
+      if(this.ButtonLogin==="Login"){
       originatorEv = ev;
       $mdOpenMenu(ev);
     }
     else{
-      $scope.ButtonLogin="Login"
-      $scope.state.notLoggedIn=true,
+      this.ButtonLogin="Login"
+      this.notLoggedIn=true
+    this.noSearchInput=true
+
       HomeService.saveId("","")
     }
     }
+    this.update=function(){
+      if(HomeService.searchinput1!==""&&HomeService.searchinput2!==""){
+        ctrl.noSearchInput=false
+
+      }
+      else{
+        ctrl.noSearchInput=true
+
+      }
+
+    }
+    this.update()
+    let refresh=$interval(this.update,5000)
 }
 }
 export default{

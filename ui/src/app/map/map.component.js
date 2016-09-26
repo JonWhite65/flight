@@ -7,29 +7,65 @@ class MapController {
   markers = []
   paths = []
 
-  constructor ($map, locations) {
+  constructor ($map, locations,HomeService,$interval) {
     this.$map = $map
+    this.colors=HomeService.colors
+    HomeService.getLocations().then(result=>{
+      this.citiesLocation=result.data
+    var ctrl= this
+    this.flights={}
 
-    // add markers from an angular constant
-    const { memphis, nashville, knoxville } = locations
-    const markers = [memphis, nashville, knoxville]
+    var markers = []
+    var paths = []
 
-    markers.forEach(marker => this.addMarker(marker))
 
-    // add paths manually
-    const paths = [
-      [memphis, nashville, '#CC0099'],
-      [nashville, knoxville, '#AA1100']
-    ]
+    this.update=function(){
+      ctrl.flights=HomeService.flights
+      ctrl.cities=[]
+      ctrl.markers=[]
+      ctrl.paths=[]
+      if(ctrl.flights.length>0){
+        let i=0
+      for(let flight of ctrl.flights){
 
-    paths.forEach(args => this.addPath(...args))
+      if(!ctrl.cities.includes(flight.origin)){
+        ctrl.cities.push(flight.origin)
+        $map.getMarkerByCityName(flight.origin).then(result=>{
+          ctrl.addMarker(result.latitude,result.longitude)
+        })
 
-    // add path from webservice
-    $map.getMarkerByCityName('Chattanooga')
-      .then(chattanooga => {
-        this.addPath(knoxville, chattanooga, '#FF3388')
-      })
-  }
+      }
+      if(!ctrl.cities.includes(flight.destination)){
+        ctrl.cities.push(flight.destination)
+        $map.getMarkerByCityName(flight.origin).then(result=>{
+          ctrl.addMarker(result.latitude,result.longitude)
+        })
+      }
+      let a
+      let b
+
+    for(let city of ctrl.citiesLocation){
+      if(flight.origin===city.city){
+        a={'latitude':city.latitude,
+      'longitude':city.longitude}
+      }
+      if(flight.destination===city.city){
+        b={'latitude':city.latitude,
+      'longitude':city.longitude}
+      }
+    }
+
+    ctrl.addPath(a,b,ctrl.colors[i])
+    i++
+    }
+}
+
+    }
+    this.update()
+
+    let refresh=$interval(this.update,5000)
+ })
+}
 
   addMarker ({ latitude, longitude }) {
     this.markers.push({

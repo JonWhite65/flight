@@ -40,9 +40,8 @@ public class FlightService {
 
 	private List<List> explore(ArrayList<String> citiesBeen, ArrayList<Flight> currentFlightList, long time,
 			String location, String destination, ArrayList<List> returnList) {
-		System.out.println("2");
+
 		if (location.equals(destination)) {
-			System.out.println("5");
 			returnList.add(currentFlightList);
 			return returnList;
 		}
@@ -52,19 +51,13 @@ public class FlightService {
 			
 			if (flight.getOrigin().equals(location) && flight.getOffset() > time
 					&& !citiesBeen.contains(flight.getDestination())) {
-				System.out.println(flight.getOrigin());
-				System.out.println(flight.getOffset());
-				System.out.println(flight.getDestination());
-				System.out.println("");
 				possibleFlights.add(flight);
 			}
 		}
 		if (possibleFlights.isEmpty()) {
-			System.out.println("3");
 			return null;
 		}
 		for (Flight flight : possibleFlights) {
-			System.out.println("4");
 			ArrayList<String> citiesUpdate = new ArrayList<String>();
 			citiesUpdate.addAll(citiesBeen);
 			citiesUpdate.add(location);
@@ -74,7 +67,6 @@ public class FlightService {
 			long timeUpdate = flight.getOffset() + flight.getFlightTime();
 			List<List> a = explore(citiesUpdate, flightListUpdate, timeUpdate, flight.getDestination(), destination,
 					returnList);
-			System.out.println("6");
 		
 		}
 

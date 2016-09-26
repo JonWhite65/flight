@@ -13,25 +13,25 @@
 
       <md-menu  md-position-mode="target-right target" md-offset="0, 72">
       <md-button md-menu-origin ng-click="hC.toggleLogin($mdOpenMenu, $event)">
-        {{ButtonLogin}}
+        {{hC.ButtonLogin}}
       </md-button>
       <md-menu-content layout="column">
 
         <md-menu-item>
-            <p  md-menu-align-target> {{LoginMessage}} </p>
+            <p  md-menu-align-target> {{hC.LoginMessage}} </p>
         </md-menu-item>
         <div layout="row">
          <md-menu-item>
            <md-input-container>
              <label>Username</label>
-             <input type="text" ng-model="user.username" required md-maxlength="10">
+             <input type="text" ng-model="hC.user.username" required md-maxlength="10">
 
            </md-input-container>
          </md-menu-item>
          <md-menu-item>
              <md-input-container>
             <label>Password</label>
-              <input type="text" ng-model="user.password" required md-maxlength="10">
+              <input type="text" ng-model="hC.user.password" required md-maxlength="10">
 
             </md-input-container>
           </md-menu-item>
@@ -41,9 +41,6 @@
             </md-button>
           </md-menu-item>
         </div>
-        <md-menu-item>
-        <p ng-if="showError" >{{ErrorMessage}}</p>
-      </md-menu-item>
       </md-menu-content>
     </md-menu>
   </div>
@@ -53,35 +50,44 @@
 
 
 <div layout="row" layout-fill style="min-height: 224px" >
-<div flex="25" >
-<div ng-if="state.notLoggedIn"></div>
+<div flex="20" >
+<div ng-if="hC.notLoggedIn" layout="column">
 <h1>New User?</h1>
 <br>
 <md-input-container>
   <label>Username</label>
-  <input type="text" ng-model="user1.username" required md-maxlength="10">
+  <input type="text" ng-model="hC.user1.username" required md-maxlength="10">
 
 </md-input-container>
 <md-input-container>
 <label>Password</label>
- <input type="text" ng-model="user1.password" required md-maxlength="10">
+ <input type="text" ng-model="hC.user1.password" required md-maxlength="10">
 
 </md-input-container>
 <md-button  ng-click="hC.newUser()">
   Create Account
 </md-button>
 </div>
-<div flex="25" >
-  <search-bar ng-if="!state.notLoggedIn"></search-bar>
+<div ng-if="!hC.notLoggedIn">
+  Welcome!
+<user></user>
+</div>
+</div>
 
-  <current-flight-list ng-if="state.noSearchInput"></current-flight-list>
-  <searched-flight-list  ng-if="!state.noSearchInput"></searched-flight-list>
+<div flex="30" >
+  <div ng-if="!hC.notLoggedIn">
+    <h2>Book Your Flight Today</h2>
+  <flight-search></flight-search>
+</div>
+  <current-flight-list ng-if="hC.noSearchInput"></current-flight-list>
+  <div ng-if="!hC.noSearchInput">
+    Potential Routes
+  <searched-flight-list  ></searched-flight-list>
+</div>
   </div>
 
 
 <div flex="50">
 <flight-map ></flight-map>
 </div>
-</div>
-
 </div>

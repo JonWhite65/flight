@@ -1,8 +1,8 @@
+import searchedFlightList from './searchedFlightList/searchedFlightList.module'
 import flightSearch from './flightSearch/flightSearch.module'
 import flightMap from './map/map.module'
 import currentFlightList from './currentFlightList/currentFlightList.module'
 import apiUrl from './api.url'
-import './home.css'
 import HomeComponent from './HomeComponent'
 import HomeService from './HomeService'
 import bcrypt from 'bcryptjs'
@@ -16,7 +16,8 @@ export default
       'ui.router',
        flightMap,
        currentFlightList,
-       flightSearch
+       flightSearch,
+      searchedFlightList
     ])
     .component('home',HomeComponent)
     .constant('apiUrl', apiUrl)
