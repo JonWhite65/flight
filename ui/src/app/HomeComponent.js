@@ -10,6 +10,8 @@ class HomeController{
     this.LoginFields=true
     this.user={"username":"","password":""}
     this.user1={"username":"","password":""}
+    this.details=false
+    this.mapState="Current Flights"
   this.notLoggedIn=true
   this.noSearchInput=true
   var ctrl=this
@@ -62,23 +64,33 @@ class HomeController{
       this.ButtonLogin="Login"
       this.notLoggedIn=true
     this.noSearchInput=true
-
+    HomeService.details=false
+    this.details=false
+    HomeService.mapState="Current Flights"
+    HomeService.searchinput1=""
+		HomeService.searchinput2=""
       HomeService.saveId("","")
     }
     }
     this.update=function(){
       if(HomeService.searchinput1!==""&&HomeService.searchinput2!==""){
         ctrl.noSearchInput=false
-
       }
       else{
         ctrl.noSearchInput=true
 
       }
+      if(HomeService.details===true){
+        ctrl.details=true
+      }
+      else{
+        ctrl.details=false
+      }
+      ctrl.mapState=HomeService.mapState
 
     }
     this.update()
-    let refresh=$interval(this.update,5000)
+    let refresh=$interval(this.update,500)
 }
 }
 export default{

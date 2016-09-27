@@ -63,7 +63,7 @@ class MapController {
     }
     this.update()
 
-    let refresh=$interval(this.update,5000)
+    let refresh=$interval(this.update,500)
  })
 }
 

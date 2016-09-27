@@ -1,0 +1,5 @@
+<div ng-repeat="flight in dIC.flights">
+Flight #{{$index+1}} leaves from {{flight.origin}} for {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}} {{dIC.itinerary.length>1&&(index!=0||index!=length-1)&&flight.layover!=0?"A "+flight.layover+" hour layover should be expected ":" "}}{{dIC.colors[$index]}}
+<br></br>
+
+</div>

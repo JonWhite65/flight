@@ -8,11 +8,14 @@ class HomeService{
 		this.id=""
 		this.username
 		this.locations
+		this.itineraries={}
+		this.itinerary
+		this.mapState="Current Flights"
+		this.details=false
+		var ctrl= this
 		this.flights={}
 		this.colors=['#CC0099','#AA1100','#FF3388','#00FF00','#0000FF']
 		this.sendLogin=function(username,password){
-			console.dir(username)
-			console.dir(password)
 			return $http.get('http://localhost:8000/user/'+username+'/'+password)}
 
 			this.newUser=function(username,password){
@@ -35,11 +38,7 @@ class HomeService{
 		}
 		this.getPossibleFlights=function(location,destination){
 			this.result=$http.get('http://localhost:8000/flights/'+location+'/'+destination)
-			this.flights=this.result
 				return this.result
-		}
-		this.saveUserItinerary=function(newItinerary){
-			return $http.put('http://localhost:8000/user/'+this.id,newItinerary)
 		}
 		this.getLocations= function(){
 				this.result1=$http.get('http://localhost:8000/location')
@@ -50,12 +49,25 @@ class HomeService{
 				return this.result1
 
 		}
-		this.getCurrentIteneraries=function(){
-			return $http.get('http://localhost:8000/user/iteneraries')
+		this.getCurrentItineraries=function(){
+			return $http.get('http://localhost:8000/user/itineraries/'+this.username).then((result)=>{
+				ctrl.itineraries=result.data
+			})
 		}
-		this.getIteneraryDetails=function(id){
-			$http.get('http://localhost:8000/user/iteneraries')
+		this.getItineraryDetails=function(itinerary){
+			this.details=true
+		this.flights= itinerary.flights
+		this.itinerary=itinerary
+		this.mapState="Itinerary Flights"
 
+
+		}
+		this.saveItinerary=function(savedItinerary){
+
+			$http.put('http://localhost:8000/user/'+this.id+'/itineraries',savedItinerary).then((result)=>{
+				ctrl.itineraries=result.data
+
+			})
 		}
 		}
 

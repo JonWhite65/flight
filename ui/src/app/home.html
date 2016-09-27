@@ -75,19 +75,21 @@
 </div>
 
 <div flex="30" >
-  <div ng-if="!hC.notLoggedIn">
+  <div ng-if="!hC.notLoggedIn&&!hC.details">
     <h2>Book Your Flight Today</h2>
   <flight-search></flight-search>
 </div>
-  <current-flight-list ng-if="hC.noSearchInput"></current-flight-list>
-  <div ng-if="!hC.noSearchInput">
+  <current-flight-list ng-if="hC.noSearchInput&&!hC.details"></current-flight-list>
+  <div ng-if="!hC.noSearchInput&&!hC.details">
 
-  <searched-flight-list  ></searched-flight-list>
+  <searched-flight-list ng-if"!hC.notLoggedIn"  ></searched-flight-list>
 </div>
+<detail-itinerary ng-if"hC.details"></detail-itinerary>
   </div>
 
 
 <div flex="50">
 <flight-map ></flight-map>
+<h3>{{hC.mapState}}</h3>
 </div>
 </div>

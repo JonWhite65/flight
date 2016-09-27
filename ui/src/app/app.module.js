@@ -1,3 +1,4 @@
+import detailItinerary from './detailItinerary/detailItinerary.module'
 import userProfile from './userProfile/userProfile.module'
 import searchedFlightList from './searchedFlightList/searchedFlightList.module'
 import flightSearch from './flightSearch/flightSearch.module'
@@ -19,7 +20,8 @@ export default
        currentFlightList,
        flightSearch,
       searchedFlightList,
-      userProfile
+      userProfile,
+      detailItinerary
     ])
     .component('home',HomeComponent)
     .constant('apiUrl', apiUrl)

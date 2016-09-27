@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cooksys.entity.SavedItinerary;
 import com.cooksys.pojo.Flight;
 import com.cooksys.service.FlightService;
 import com.cooksys.service.LocationService;
@@ -32,7 +33,7 @@ public class FlightsController {
 		
 	}
 	@RequestMapping(value = "/{location}/{destination}", method = RequestMethod.GET)
-	public List<List> getPossible(@PathVariable("location") String location,@PathVariable("destination") String destination)
+	public List<SavedItinerary> getPossible(@PathVariable("location") String location,@PathVariable("destination") String destination)
 	{
 		return flightService.allPossibleIteneraries(location,destination);
 	}

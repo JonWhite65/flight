@@ -2,6 +2,8 @@ package com.cooksys.entity;
 
 import javax.persistence.*;
 
+import com.cooksys.pojo.Flight;
+
 @Entity
 public class SavedFlight {
 	@Id
@@ -13,10 +15,24 @@ public class SavedFlight {
 	private String destination;
 	@Column(name = "FlightTime")
 	private long flightTime;
-	@Column(name = "offset")
+	@Column(name = "takeoff_offset")
 	private long offset;
+	@Column(name="layover")
+	private long layover;
 
-	public SavedFlight() {
+	public long getLayover() {
+		return layover;
+	}
+
+	public void setLayover(long layover) {
+		this.layover = layover;
+	}
+
+	public SavedFlight(Flight flight) {
+		this.origin = flight.getOrigin();
+		this.destination = flight.getDestination();
+		this.flightTime =flight.getFlightTime();
+		this.offset = flight.getOffset();
 	}
 
 	public SavedFlight(String origin, String destination, long flightTime, long offset) {
@@ -26,7 +42,7 @@ public class SavedFlight {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
-
+	public SavedFlight(){}
 	public long getId() {
 		return id;
 	}

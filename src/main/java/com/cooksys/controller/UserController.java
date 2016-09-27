@@ -27,8 +27,9 @@ public class UserController {
 	public List<User> getAllUsers(){
 		return userService.getAllUsers();
 	}
-	@RequestMapping(value = "/{username}" ,method = RequestMethod.GET)
+	@RequestMapping(value = "/itineraries/{username}" ,method = RequestMethod.GET)
 	public List<SavedItinerary> getSavedItinerary(@PathVariable("username") String username){
+
 		return userService.getuserItinerary(username);
 	}
 	@RequestMapping(value = "/{username}/{password}",method = RequestMethod.GET)
@@ -39,5 +40,9 @@ public class UserController {
 	@RequestMapping(method=RequestMethod.POST)
 	public Long newUser(@RequestBody User user){
 		return userService.newUser(user);
+	}
+	@RequestMapping(value="/{id1}/itineraries",method=RequestMethod.PUT)
+	public List<SavedItinerary> newIteneraries(@PathVariable("id1") Long id1,@RequestBody SavedItinerary savedItinerary){
+		return userService.newItinerary(savedItinerary,id1);
 	}
 }
