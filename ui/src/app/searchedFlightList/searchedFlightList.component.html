@@ -1,11 +1,12 @@
 
-<div>
-here
+{{sFLC.flights.length>0?"Potential Routes":"No Routes Avalible"}}
 <div ng-repeat="flights in sFLC.flights">
+
+
+  <br></br>
   Option #{{$index+1}}
 <div ng-repeat="flight in flights">
-Flight #{{$index+1}} Leaves from {{flight.origin}} for {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}} {{fLC.colors[$index]}}
+  {{flights.length>1?"Step #"+$index+1+" leaves from "+flight.origin+" to "+flight.destination+" at "+(flight.offset +8 > 12 ?flight.offset -4:flight.offset +8)+" "+(flight.offset +8 > 11 ?"pm":"am")+" and will fly for "+flight.flightTime+" "+(flight.flightTime>1?"hours":"hour")+" "+ sFLC.colors[$index]:
+  "Direct flight from "+flight.origin+" to "+flight.destination+" at "+(flight.offset +8 > 12?flight.offset -4:flight.offset +8)+" "+(flight.offset +8 > 11 ?"pm":"am")+" and will fly for "+flight.flightTime+" "+(flight.flightTime>1?"hours":"hour")+sFLC.colors[$index]}}
 <br></br>
-
-</div>
 </div>

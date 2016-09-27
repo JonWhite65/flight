@@ -13,6 +13,11 @@ public class SavedItinerary {
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "Flights")
 	private List<SavedFlight> flights;
+	
+	private Long totalLayover;
+	private Long totalFlightTime;
+	private String origin;
+	private String destination;
 
 	public SavedItinerary() {
 	}

@@ -1,0 +1,8 @@
+<h3>{{uP.iteneraries.length>0?Current Iteneraries: No Iteneraries Saved}}</h3>
+<div ng-repeat="itenerary in uP.iteneraries">
+  itenerary #{{$index+1}}
+Passage from {{itenerary.origin}} to {{itenerary.destination}} with a total of {{itenerary.totalFlightTime}} hours of travel and {{itenerary.totalLayover}} hours of layover
+<md-button ng-click="uP.getDetails(itenerary.id)">
+  Details
+</md-button>
+</div>

@@ -1,3 +1,4 @@
+import userProfile from './userProfile/userProfile.module'
 import searchedFlightList from './searchedFlightList/searchedFlightList.module'
 import flightSearch from './flightSearch/flightSearch.module'
 import flightMap from './map/map.module'
@@ -17,7 +18,8 @@ export default
        flightMap,
        currentFlightList,
        flightSearch,
-      searchedFlightList
+      searchedFlightList,
+      userProfile
     ])
     .component('home',HomeComponent)
     .constant('apiUrl', apiUrl)

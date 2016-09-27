@@ -3,6 +3,6 @@ import searchedFlightListComponent from './searchedFlightList.component.js'
 
 export default
   angular
-    .module('currentList', [])
+    .module('searchedFlightList', [])
     .component('searchedFlightList', searchedFlightListComponent)
     .name

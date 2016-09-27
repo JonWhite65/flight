@@ -69,8 +69,8 @@
 </md-button>
 </div>
 <div ng-if="!hC.notLoggedIn">
-  Welcome!
-<user></user>
+  <h2>Welcome!</h2>
+<user-profile></user-profile>
 </div>
 </div>
 
@@ -81,7 +81,7 @@
 </div>
   <current-flight-list ng-if="hC.noSearchInput"></current-flight-list>
   <div ng-if="!hC.noSearchInput">
-    Potential Routes
+
   <searched-flight-list  ></searched-flight-list>
 </div>
   </div>

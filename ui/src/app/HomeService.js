@@ -35,7 +35,7 @@ class HomeService{
 		}
 		this.getPossibleFlights=function(location,destination){
 			this.result=$http.get('http://localhost:8000/flights/'+location+'/'+destination)
-			this.flights=result
+			this.flights=this.result
 				return this.result
 		}
 		this.saveUserItinerary=function(newItinerary){
@@ -50,7 +50,13 @@ class HomeService{
 				return this.result1
 
 		}
+		this.getCurrentIteneraries=function(){
+			return $http.get('http://localhost:8000/user/iteneraries')
+		}
+		this.getIteneraryDetails=function(id){
+			$http.get('http://localhost:8000/user/iteneraries')
 
+		}
 		}
 
 		}
