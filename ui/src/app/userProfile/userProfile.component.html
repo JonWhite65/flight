@@ -1,10 +1,11 @@
 <h3>{{uPC.itineraries.length>0?"Current Itineraries": "No Itineraries Saved"}}</h3>
 <div ng-repeat="itinerary in uPC.itineraries">
-  itinerary #{{$index+1}}
+  Itinerary #{{$index+1}}
 Passage from {{itinerary.origin}} to {{itinerary.destination}} with a total of {{itinerary.totalFlightTime}} hours of travel and {{itinerary.totalLayover}} hours of layover
-<md-button ng-if ="uPC.show!==$index"ng-click="uPC.getDetails($index)">
+<md-button ng-if ="uPC.show!==$index"ng-click="uPC.getDetails($index)" >
   Show Details
 </md-button>
+<br ng-if="uPC.show===$index"></br>
 </div>
 <md-button  ng-if= "uPC.details"ng-click="uPC.resumeSearch()">
   Resume Searching

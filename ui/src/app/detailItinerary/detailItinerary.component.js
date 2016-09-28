@@ -11,8 +11,7 @@ class DetailItineraryController {
     this.update=function(){
       if(HomeService.mapState==="Itinerary Flights"){
 
-      if(ctrl.filghts===HomeService.flights){
-
+      if(ctrl.flights===HomeService.flights){
       }
       else{
         ctrl.itinerary=HomeService.itinerary

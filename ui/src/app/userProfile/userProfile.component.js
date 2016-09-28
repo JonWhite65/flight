@@ -9,7 +9,7 @@ class UserProfileController {
     this.show=-1
     HomeService.getCurrentItineraries()
     this.update=function(){
-
+      
     ctrl.itineraries=HomeService.itineraries
 
 }

@@ -21,7 +21,7 @@ export default
        flightSearch,
       searchedFlightList,
       userProfile,
-      detailItinerary
+      detailItinerary,
     ])
     .component('home',HomeComponent)
     .constant('apiUrl', apiUrl)

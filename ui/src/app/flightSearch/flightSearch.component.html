@@ -1,15 +1,20 @@
 
 <div layout="row">
   <div  layout-align="center center">
-    <md-select placeholder="Origin" ng-model="fSC.city1" md-on-open="fSC.loadCities()" style="min-width: 200px;">
-      <md-option ng-value="city" ng-repeat="city in fSC.cities">{{fSC.city1}}</md-option>
+    <md-input-container style=" margin : 0px">
+    <md-select placeholder="Origin" ng-model="fSC.city1"  style="min-width: 200px;">
+      <md-option ng-value="city" ng-repeat="city in fSC.cities">{{city}}</md-option>
     </md-select>
+  </md-input-container>
 
   </div>
+
   <div layout-align="center center">
-    <md-select placeholder="Destination" ng-model="fSC.city2" md-on-open="fSC.loadCities()" style="min-width: 200px;">
-      <md-option ng-value="city" ng-repeat="city in fSC.cities">{{fSC.city2}}</md-option>
+    <md-input-container style=" margin : 0px">
+    <md-select placeholder="Destination" ng-model="fSC.city2"  style="min-width: 200px;">
+      <md-option ng-value="city" ng-repeat="city in fSC.cities">{{city}}</md-option>
     </md-select>
+    </md-input-container>
 
   </div>
 </div

@@ -6,7 +6,7 @@ class HomeController{
     var bcrypt = require('bcryptjs')
     this.hash
     this.ButtonLogin="Login"
-    this.LoginMessage="Hello Please Sign In"
+    this.LoginMessage="Hello! Please Sign In"
     this.LoginFields=true
     this.user={"username":"","password":""}
     this.user1={"username":"","password":""}
@@ -31,7 +31,7 @@ class HomeController{
         this.user.username="",
         this.user.password="",
         this.notLoggedIn=false,
-      this.ButtonLogin="Log Out-"+HomeService.username
+      this.ButtonLogin=HomeService.username+"-Log Out"
     //ask why undefined  $mdMenu.hide=true
   ):
         (this.errorMessage="Invalid login",
@@ -49,7 +49,7 @@ class HomeController{
         this.user1.username="",
         this.user1.password="",
           this.notLoggedIn=false,
-        this.ButtonLogin="Log Out-"+HomeService.username)
+        this.ButtonLogin=HomeService.username+"-Log Out")
           :
           (this.errorMessage="Cannot use this Username",
           this.showError=true)
@@ -69,11 +69,15 @@ class HomeController{
     HomeService.mapState="Current Flights"
     HomeService.searchinput1=""
 		HomeService.searchinput2=""
+
       HomeService.saveId("","")
     }
     }
     this.update=function(){
+      
       if(HomeService.searchinput1!==""&&HomeService.searchinput2!==""){
+
+
         ctrl.noSearchInput=false
       }
       else{

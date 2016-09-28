@@ -1,5 +1,9 @@
-<div ng-repeat="flight in fLC.flights">
-Flight #{{$index+1}} leaves from {{flight.origin}} for {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}} {{fLC.colors[$index]}}
+<div layout="row" ng-repeat="flight in fLC.flights">
+  <div layout="column" flex="75">
+Flight #{{$index+1}} leaves from {{flight.origin}} for {{flight.destination }}
+<p style=" margin : 0px">at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}}</p>
+</div>
+<pre flex="20"ng-style="{'color':fLC.colors[$index]}"><span style="font-size: 30px">-----> </span></pre>
 <br></br>
 
 </div>

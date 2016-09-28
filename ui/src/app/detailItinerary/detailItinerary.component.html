@@ -1,5 +1,10 @@
-<div ng-repeat="flight in dIC.flights">
-Flight #{{$index+1}} leaves from {{flight.origin}} for {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}} {{dIC.itinerary.length>1&&(index!=0||index!=length-1)&&flight.layover!=0?"A "+flight.layover+" hour layover should be expected ":" "}}{{dIC.colors[$index]}}
+<h3><pre> </pre></h3>
+<div layout="row" ng-repeat="flight in dIC.flights">
+  <div layout="column" flex="75">
+{{dIC.flights.length>1&&$index!=0?("A "+flight.layover+" hour layover should be expected in "+ flight.origin):" "}}
+<p style=" margin : 0px">Flight #{{$index+1}} leaves from {{flight.origin}} for {{flight.destination }} at {{flight.offset +8 > 12 ? (flight.offset -4) : flight.offset +8}} {{flight.offset +8 > 11 ? "pm" : "am"}} and will fly for {{flight.flightTime}} {{flight.flightTime>1?"hours":"hour"}} </p>
+</div>
+<pre flex="20"ng-style="{'color':dIC.colors[$index]}"><span style="font-size: 30px">-----> </span></pre>
 <br></br>
 
 </div>

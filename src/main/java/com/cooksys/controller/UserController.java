@@ -32,9 +32,9 @@ public class UserController {
 
 		return userService.getuserItinerary(username);
 	}
-	@RequestMapping(value = "/{username}/{password}",method = RequestMethod.GET)
-	public User checkLogin(@PathVariable("username") String username,@PathVariable("password") String password){
-		return userService.checkUser(username,password);
+	@RequestMapping(method = RequestMethod.PUT)
+	public User checkLogin(@RequestBody User user){
+		return userService.checkUser(user.getUsername(),user.getPassword());
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)

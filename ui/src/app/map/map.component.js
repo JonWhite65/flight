@@ -27,20 +27,6 @@ class MapController {
       if(ctrl.flights.length>0){
         let i=0
       for(let flight of ctrl.flights){
-
-      if(!ctrl.cities.includes(flight.origin)){
-        ctrl.cities.push(flight.origin)
-        $map.getMarkerByCityName(flight.origin).then(result=>{
-          ctrl.addMarker(result.latitude,result.longitude)
-        })
-
-      }
-      if(!ctrl.cities.includes(flight.destination)){
-        ctrl.cities.push(flight.destination)
-        $map.getMarkerByCityName(flight.origin).then(result=>{
-          ctrl.addMarker(result.latitude,result.longitude)
-        })
-      }
       let a
       let b
 

@@ -18,9 +18,10 @@ class flightSearchController {
 
   this.update=function(){
 
+   if(HomeService.username!=""){
   HomeService.searchinput1=ctrl.city1
   HomeService.searchinput2=ctrl.city2
-
+}
 }
 
 this.update()

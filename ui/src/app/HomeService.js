@@ -14,9 +14,11 @@ class HomeService{
 		this.details=false
 		var ctrl= this
 		this.flights={}
-		this.colors=['#CC0099','#AA1100','#FF3388','#00FF00','#0000FF']
+		this.colors=['#CC0099','#AA1100','#FF3388','#00AA33','#0000FF']
 		this.sendLogin=function(username,password){
-			return $http.get('http://localhost:8000/user/'+username+'/'+password)}
+			let user={"username":username,
+			"password":password}
+			return $http.put('http://localhost:8000/user',user)}
 
 			this.newUser=function(username,password){
 				let user={"username":username,

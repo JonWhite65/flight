@@ -36,7 +36,7 @@
             </md-input-container>
           </md-menu-item>
           <md-menu-item>
-            <md-button md-prevent-menu-close ng-click="hC.login()">
+            <md-button ng-click="hC.login()">
               Login
             </md-button>
           </md-menu-item>
@@ -50,18 +50,21 @@
 
 
 <div layout="row" layout-fill style="min-height: 224px" >
+  <div>
+    <pre>  <pre>
+  </div>
 <div flex="20" >
 <div ng-if="hC.notLoggedIn" layout="column">
 <h1>New User?</h1>
 <br>
-<md-input-container>
-  <label>Username</label>
-  <input type="text" ng-model="hC.user1.username" required md-maxlength="10">
+<md-input-container >
+  <label >Username</label>
+  <input type="text" ng-model="hC.user1.username" >
 
 </md-input-container>
 <md-input-container>
 <label>Password</label>
- <input type="text" ng-model="hC.user1.password" required md-maxlength="10">
+ <input type="text" ng-model="hC.user1.password" >
 
 </md-input-container>
 <md-button  ng-click="hC.newUser()">
@@ -73,23 +76,35 @@
 <user-profile></user-profile>
 </div>
 </div>
-
+<div>
+  <pre>  <pre>
+</div>
 <div flex="30" >
   <div ng-if="!hC.notLoggedIn&&!hC.details">
-    <h2>Book Your Flight Today</h2>
+    <h2 >Book Your Flight Today</h2>
   <flight-search></flight-search>
 </div>
-  <current-flight-list ng-if="hC.noSearchInput&&!hC.details"></current-flight-list>
+<div ng-if="hC.noSearchInput&&!hC.details">
+  <h2 ng-if="hC.notLoggedIn"><pre> </pre></h2>
+  <current-flight-list></current-flight-list>
+</div>
   <div ng-if="!hC.noSearchInput&&!hC.details">
 
-  <searched-flight-list ng-if"!hC.notLoggedIn"  ></searched-flight-list>
+  <searched-flight-list ng-if="!hC.notLoggedIn"  ></searched-flight-list>
 </div>
-<detail-itinerary ng-if"hC.details"></detail-itinerary>
+<div ng-if="hC.details">
+<detail-itinerary ></detail-itinerary>
+</div>
   </div>
 
 
 <div flex="50">
+  <h2>{{hC.mapState}}</h2>
 <flight-map ></flight-map>
-<h3>{{hC.mapState}}</h3>
+
+</div>
+<div>
+  <pre> <pre>
+</div>
 </div>
 </div>
