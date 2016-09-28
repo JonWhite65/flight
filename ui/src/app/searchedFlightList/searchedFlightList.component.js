@@ -6,9 +6,19 @@ class SearchedFlightListController {
     this.itineraries={}
     this.colors=[]
     this.details=-1
-
+    this.flights={}
     var ctrl=this
+    this.getColor= function(flight){
+      var i =0;
 
+      for(let flight1 of this.flights){
+        if(flight1.origin===flight.origin&&flight1.destination===flight.destination&&flight1.offset===flight.offset&&flight1.flightTime===flight.flightTime){
+        return this.colors[i]
+      }
+      i++
+      }
+
+    }
     this.update=function(){
       if(HomeService.searchinput1===HomeService.searchinput2){
         ctrl.itineraries="a"
@@ -16,7 +26,7 @@ class SearchedFlightListController {
       else {
         if(ctrl.itineraries==="a"){
         ctrl.itineraries={}
-}
+}     ctrl.flights=HomeService.flights
     HomeService.getPossibleFlights(HomeService.searchinput1,HomeService.searchinput2).then((result)=>{
       if(ctrl.itineraries===result.data){
       }else{

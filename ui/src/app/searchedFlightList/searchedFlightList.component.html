@@ -6,13 +6,20 @@
 <div ng-repeat="flights in sFLC.itineraries">
 {{flights.flights!==undefined?  ("Option "+($index+1)):""}}
   <br></br>
+
+
+<div  ng-repeat="flight in flights.flights">
   <div ng-if="flights.flights!==undefined" layout= "row">
-<div layout="column" flex="75" ng-repeat="flight in flights.flights">
+  <div layout="column">
   <p style=" margin : 0px">{{flights.flights.length>1?"Step #"+($index+1)+" leaves from "+flight.origin+" to "+flight.destination+" at "+(flight.offset +8 > 12 ?flight.offset -4:flight.offset +8)+" "+(flight.offset +8 > 11 ?"pm":"am")+" and will fly for "+flight.flightTime+" "+(flight.flightTime>1?"hours":"hour")+" ":
   "Direct flight from "+flight.origin+" to "+flight.destination+" at "+(flight.offset +8 > 12?flight.offset -4:flight.offset +8)+" "+(flight.offset +8 > 11 ?"pm":"am")+" and will fly for "+flight.flightTime+" "+(flight.flightTime>1?"hours":"hour")}}</p>
-<br></br>
 </div>
-<pre flex="20"ng-style="{'color':sFLC.colors[$index]}"><span style="font-size: 30px">-----> </span></pre>
+<pre ng-style="{'color':sFLC.getColor(flight)}"><span style="font-size: 30px">-----> </span></pre>
+</div>
+<br ng-if="$index!==(flights.flights.length--1)"></br>
+
+
+
 </div>
 <div ng-if ="flights.flights!==undefined" layout="row">
   <md-button ng-click="sFLC.bookItinerary(sFLC.itineraries[$index])">
