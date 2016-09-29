@@ -12,6 +12,7 @@ class HomeService{
 		this.itinerary
 		this.mapState="Current Flights"
 		this.details=false
+		this.currentlength=5
 		var ctrl= this
 		this.flights={}
 		this.colors=['#CC0099','#AA1100','#FF3388','#00AA33','#0000FF']
@@ -23,18 +24,31 @@ class HomeService{
 			this.newUser=function(username,password){
 				let user={"username":username,
 				"password":password}
-				console.dir(username)
-				console.dir(password)
 				return $http.post('http://localhost:8000/user/',user)}
 
 		this.saveId=function(id,username){
 			this.id=id
 			this.username=username
 		}
+		this.randomColor=function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 		this.getCurrentFlights=function(){
 			this.result=$http.get('http://localhost:8000/flights')
 			this.result.then(result=>{
 				this.flights=result.data
+				if(this.flights.length>this.currentLength){
+					for(let i =0;i<this.flights.length-this.currentLength;i++){
+						this.colors.push(this.randomColor())
+					}
+					this.currentLength=this.flights.length
+
+				}
 			})
 				return this.result
 		}

@@ -7,6 +7,7 @@ class SearchedFlightListController {
     this.colors=[]
     this.details=-1
     this.flights={}
+    this.saveFLights
     var ctrl=this
     this.getColor= function(flight){
       var i =0;
@@ -28,11 +29,10 @@ class SearchedFlightListController {
         ctrl.itineraries={}
 }     ctrl.flights=HomeService.flights
     HomeService.getPossibleFlights(HomeService.searchinput1,HomeService.searchinput2).then((result)=>{
-      if(ctrl.itineraries===result.data){
-      }else{
+
     ctrl.itineraries=result.data
     ctrl.colors=HomeService.colors
-  }
+    
   })
 }
 }
@@ -41,6 +41,7 @@ this.bookItinerary= function(SavedItinerary){
 }
 this.examineItinerary=function(index){
 this.details=index
+this.saveFLights=HomeService.flights
   HomeService.flights=this.itineraries[index].flights
   HomeService.mapState= "Current Itinerary"
 }
